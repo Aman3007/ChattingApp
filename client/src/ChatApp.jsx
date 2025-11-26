@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Send, LogOut, Users, MessageCircle } from 'lucide-react';
 import io from 'socket.io-client';
 
-const API_URL = 'http://localhost:5000';
+const API_URL = 'https://chattingappbackend-vzoi.onrender.com';
 
 export default function ChatApp() {
   const [user, setUser] = useState(null);
