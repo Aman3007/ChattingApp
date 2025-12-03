@@ -61,9 +61,11 @@ export default function ChatApp() {
   };
 
   const connectSocket = () => {
-    socket.current = io(API_URL, {
-      withCredentials: true
-    });
+   socket.current = io(API_URL, {
+  withCredentials: true,
+  transports: ["websocket"] 
+});
+
     
     socket.current.on('connect', () => {
       console.log('Socket.IO connected');

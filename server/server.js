@@ -14,15 +14,16 @@ const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
     origin: "https://chattingappfront.onrender.com",
-    methods: ["GET", "POST"],
-    credentials: true
+    credentials: true,
+    methods: ["GET", "POST", "OPTIONS"],
   }
 });
 
 
 app.use(cors({
-  origin: "https://chattingappfront.onrender.com",
-  credentials: true
+   origin: "https://chattingappfront.onrender.com",
+  credentials: true,
+  methods: ["GET", "POST", "OPTIONS"]
 }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -94,8 +95,9 @@ app.post('/api/auth/register', async (req, res) => {
     // Set HTTP-only cookie
     res.cookie('token', token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
+      
+      sameSite: 'none',
+secure: true,
       maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
     });
     
@@ -129,8 +131,9 @@ app.post('/api/auth/login', async (req, res) => {
     // Set HTTP-only cookie
     res.cookie('token', token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
+     
+      sameSite: 'none',
+secure: true,
       maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
     });
     
