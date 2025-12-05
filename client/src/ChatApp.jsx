@@ -170,69 +170,85 @@ export default function ChatApp() {
   }
 
   if (!user) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center p-4">
-        <div className="bg-white rounded-lg shadow-2xl p-8 w-full max-w-md">
-          <div className="flex items-center justify-center mb-6">
-            <MessageCircle className="w-12 h-12 text-blue-600" />
-          </div>
-          <h2 className="text-3xl font-bold text-center mb-6 text-gray-800">
-            {isLogin ? 'Welcome Back' : 'Create Account'}
-          </h2>
-          
-          {error && (
-            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-              {error}
-            </div>
-          )}
-          
-          <div className="space-y-4">
-            <div>
-              <label className="block text-gray-700 mb-2 font-medium">Username</label>
-              <input
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && handleAuth()}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
-            
-            <div>
-              <label className="block text-gray-700 mb-2 font-medium">Password</label>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && handleAuth()}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
-            
-            <button
-              onClick={handleAuth}
-              className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition font-medium"
-            >
-              {isLogin ? 'Login' : 'Register'}
-            </button>
-          </div>
-          
-          <p className="text-center mt-4 text-gray-600">
-            {isLogin ? "Don't have an account? " : "Already have an account? "}
-            <button
-              onClick={() => {
-                setIsLogin(!isLogin);
-                setError('');
-              }}
-              className="text-blue-600 hover:underline font-medium"
-            >
-              {isLogin ? 'Register' : 'Login'}
-            </button>
-          </p>
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 p-6">
+
+      {/* Glass Card */}
+      <div className="backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl rounded-3xl p-10 w-full max-w-md animate-fadeIn">
+
+        {/* Icon */}
+        <div className="flex justify-center mb-6">
+          <MessageCircle className="w-16 h-16 text-white drop-shadow-lg" />
         </div>
+
+        {/* Heading */}
+        <h2 className="text-4xl font-extrabold text-center text-white mb-6 drop-shadow-md tracking-wide">
+          {isLogin ? "Welcome Back!" : "Create Your Account"}
+        </h2>
+
+        {/* Error Box */}
+        {error && (
+          <div className="bg-red-500/20 border border-red-400 text-red-200 px-4 py-3 rounded-lg mb-4">
+            {error}
+          </div>
+        )}
+
+        {/* Form */}
+        <div className="space-y-5">
+          <div>
+            <label className="block text-white font-medium mb-2 tracking-wide">
+              Username
+            </label>
+            <input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              onKeyPress={(e) => e.key === 'Enter' && handleAuth()}
+              className="w-full px-4 py-3 bg-white/20 text-white border border-white/30 placeholder-white/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-300 transition"
+              placeholder="Enter your username"
+            />
+          </div>
+
+          <div>
+            <label className="block text-white font-medium mb-2 tracking-wide">
+              Password
+            </label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              onKeyPress={(e) => e.key === 'Enter' && handleAuth()}
+              className="w-full px-4 py-3 bg-white/20 text-white border border-white/30 placeholder-white/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-300 transition"
+              placeholder="Enter your password"
+            />
+          </div>
+
+          <button
+            onClick={handleAuth}
+            className="w-full bg-white text-purple-600 py-3 rounded-xl font-bold shadow-lg hover:bg-purple-100 transition active:scale-95 tracking-wide"
+          >
+            {isLogin ? "Login" : "Register"}
+          </button>
+        </div>
+
+        {/* Switch Text */}
+        <p className="text-center text-white/80 mt-5">
+          {isLogin ? "Don't have an account? " : "Already have an account? "}
+          <button
+            onClick={() => {
+              setIsLogin(!isLogin);
+              setError('');
+            }}
+            className="text-yellow-300 font-bold hover:underline"
+          >
+            {isLogin ? "Register" : "Login"}
+          </button>
+        </p>
       </div>
-    );
-  }
+    </div>
+  );
+}
+
 
   return (
     <div className="h-screen bg-gray-100 flex flex-col">
